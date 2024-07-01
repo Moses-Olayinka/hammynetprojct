@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "334392625005",
+    "project_id": "hammynet-laundry",
+    "storage_bucket": "hammynet-laundry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334392625005:android:ead15a8f70921525b3bc64",
+        "android_client_info": {
+          "package_name": "com.example.hammynet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1pRw1faDSUaJ1r-dcdx4zFFStqweR_4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
