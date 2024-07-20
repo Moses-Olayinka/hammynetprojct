@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hammynet/views/account/account.dart';
 import 'package:hammynet/views/basket/basketScreen.dart';
 import 'package:hammynet/views/browse/browse.dart';
@@ -19,8 +20,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const ServicesScreen(),
     const BrowseScreen(),
+    const ServicesScreen(),
     const BasketScreen(),
     const AccountScreen()
   ];
@@ -33,14 +34,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
         index: _currentIndex,
         height: 60.0,
         items: const <Widget>[
-          Icon(
-            Icons.home,
-            size: 30,
-          ),
-          Icon(Icons.shopping_basket, size: 30),
-          Icon(Icons.search, size: 30),
-          Icon(Icons.shopping_cart, size: 30),
-          Icon(Icons.person, size: 30),
+          Icon(FontAwesomeIcons.home),
+          Icon(FontAwesomeIcons.boxesStacked),
+          Icon(FontAwesomeIcons.magnifyingGlass),
+          Icon(FontAwesomeIcons.cartShopping),
+          Icon(Icons.person, size: 35),
         ],
         color: Colors.lightBlue,
         buttonBackgroundColor: Colors.white,

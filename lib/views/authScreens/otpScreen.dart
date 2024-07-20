@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hammynet/controller/services/authServices/mobileAuthServices.dart';
 import 'package:hammynet/utils/textStyles.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:hammynet/controller/provider/authProvider/authProvider.dart';
+import 'package:provider/provider.dart';
 import '../../utils/colors.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -66,7 +68,10 @@ class _OTPScreenState extends State<OTPScreen> {
             right: 10.w,
             bottom: 3.h,
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  MobileAuthServices.verifyOPT(
+                      context: context, otp: otpController.text.trim());
+                },
                 style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(),
                     padding:
@@ -99,7 +104,7 @@ class _OTPScreenState extends State<OTPScreen> {
             height: 2.h,
           ),
           Text(
-            'Enter the 4-digit code sent to you 08143855745',
+            'Enter the 4-digit code sent to you at ${context.read<MobileAuthProvider>().mobileNumber!}',
             style: AppTextStyles.body16,
           ),
           SizedBox(

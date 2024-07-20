@@ -2,6 +2,9 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hammynet/controller/provider/authProvider/authProvider.dart';
+import 'package:hammynet/controller/services/authServices/mobileAuthServices.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/colors.dart';
@@ -17,6 +20,15 @@ class MobileLoginScreen extends StatefulWidget {
 class _MobileLoginScreenState extends State<MobileLoginScreen> {
   String selectedCountry = '+144';
   TextEditingController mobilecontroller = TextEditingController();
+  bool receiveOTPButtonPressed = false;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      receiveOTPButtonPressed = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -97,7 +109,17 @@ class _MobileLoginScreenState extends State<MobileLoginScreen> {
             ),
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  receiveOTPButtonPressed = true;
+                });
+                context.read<MobileAuthProvider>().updateMobileNumber(
+                    '$selectedCountry${mobilecontroller.text.trim()}');
+                MobileAuthServices.receiveOPT(
+                    context: context,
+                    mobileNo:
+                        '$selectedCountry${mobilecontroller.text.trim()}');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.lightBlue,
                 minimumSize: Size(90.w, 6.h),
@@ -106,25 +128,29 @@ class _MobileLoginScreenState extends State<MobileLoginScreen> {
                       10.0), // Adjust the radius as needed
                 ),
               ),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Next',
-                      style: AppTextStyles.body16.copyWith(color: white),
-                    ),
-                  ),
-                  Positioned(
-                    right: 5.w,
-                    child: Icon(
-                      Icons.arrow_forward,
+              child: receiveOTPButtonPressed
+                  ? CircularProgressIndicator(
                       color: white,
-                      size: 4.h,
-                    ),
-                  ),
-                ],
-              )),
+                    )
+                  : Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Next',
+                            style: AppTextStyles.body16.copyWith(color: white),
+                          ),
+                        ),
+                        Positioned(
+                          right: 5.w,
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: white,
+                            size: 4.h,
+                          ),
+                        ),
+                      ],
+                    )),
           SizedBox(
             height: 3.w,
           ),

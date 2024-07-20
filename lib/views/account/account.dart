@@ -15,7 +15,7 @@ class _AccountScreenState extends State<AccountScreen> {
   List account = [
     [FontAwesomeIcons.shop, 'Orders'],
     [FontAwesomeIcons.heart, 'Your favourites'],
-    [FontAwesomeIcons.star, 'Restaurant Rewards'],
+    [FontAwesomeIcons.star, 'House Rewards'],
     [FontAwesomeIcons.wallet, 'Wallet'],
     [FontAwesomeIcons.gift, 'Send a gift'],
     [FontAwesomeIcons.person, 'Help'],
